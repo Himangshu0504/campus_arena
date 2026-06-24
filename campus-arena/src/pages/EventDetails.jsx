@@ -150,21 +150,15 @@ export default function EventDetails() {
         </button>
 
         <div className="theme-card rounded-3xl p-8">
-          {/* Event Poster - dynamically adapts to portrait/landscape aspect ratio */}
+          {/* Event Poster - natural sizing, no fixed heights */}
           {event.posterUrl && (
-            <div
-              className={`w-full rounded-2xl overflow-hidden mb-6 bg-gray-900/40 flex items-center justify-center ${
-                isPortrait === null
-                  ? "h-64 sm:h-80 md:h-96"
-                  : isPortrait
-                  ? "h-80 sm:h-96 md:h-[28rem]"
-                  : "h-56 sm:h-72 md:h-80"
-              }`}
-            >
+            <div className="w-full rounded-2xl overflow-hidden mb-6 bg-gray-900/40 flex items-center justify-center">
               <img
                 src={event.posterUrl}
                 alt={event.title}
-                className="w-full h-full object-contain"
+                className={`w-full h-auto object-contain transition-all duration-300 ${
+                  isPortrait === null ? "" : isPortrait ? "max-w-lg mx-auto" : ""
+                }`}
                 onLoad={(e) => {
                   const img = e.target;
                   const ratio = img.naturalWidth / img.naturalHeight;

@@ -82,9 +82,9 @@ export async function getCroppedImg(imageSrc, pixelCrop, outputWidth, outputHeig
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
 
-  // Smaller output = faster upload. 300px is sufficient for display on any screen.
-  const w = Math.min(outputWidth || pixelCrop.width, 300);
-  const h = Math.min(outputHeight || pixelCrop.height, 300);
+  // Higher resolution preserves image quality at larger display sizes
+  const w = Math.min(outputWidth || pixelCrop.width, 1920);
+  const h = Math.min(outputHeight || pixelCrop.height, 1920);
 
   canvas.width = w;
   canvas.height = h;
@@ -108,7 +108,7 @@ export async function getCroppedImg(imageSrc, pixelCrop, outputWidth, outputHeig
         else reject(new Error("Canvas to Blob failed"));
       },
       "image/jpeg",
-      0.75
+      0.92
     );
   });
 }
@@ -128,7 +128,7 @@ function createImage(url) {
 
 export async function uploadToCloudinary(
   file,
-  { compress = true, maxWidth = 1200, quality = 0.8 } = {}
+  { compress = true, maxWidth = 2500, quality = 0.92 } = {}
 ) {
   validateConfig();
 

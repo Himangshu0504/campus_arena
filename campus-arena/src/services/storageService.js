@@ -53,7 +53,7 @@ export const deleteImage = async () => {
 /**
  * Compress and resize an image before upload
  */
-export const compressImage = async (file, maxWidth = 1200, quality = 0.8) => {
+export const compressImage = async (file, maxWidth = 2500, quality = 0.92) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);

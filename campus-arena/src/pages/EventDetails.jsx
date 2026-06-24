@@ -149,13 +149,13 @@ export default function EventDetails() {
         </button>
 
         <div className="theme-card rounded-3xl p-8">
-          {/* Event Poster - full image visible, no cropping */}
+          {/* Event Poster - clean display with no cropping */}
           {event.posterUrl && (
-            <div className="w-full rounded-2xl mb-6 overflow-hidden bg-gray-900/50">
+            <div className="w-full rounded-2xl mb-6 overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800/80 to-gray-900 flex items-center justify-center p-2">
               <img
                 src={event.posterUrl}
                 alt={event.title}
-                className="w-full max-h-[32rem] object-contain mx-auto"
+                className="w-full max-h-[70vh] object-contain rounded-lg"
               />
             </div>
           )}

@@ -149,15 +149,14 @@ export default function EventDetails() {
         </button>
 
         <div className="theme-card rounded-3xl p-8">
-          {/* Event Banner - full width, capped height, covers area nicely */}
+          {/* Event Banner - background-image for reliable cover positioning */}
           {event.posterUrl && (
-            <div className="w-full overflow-hidden rounded-2xl mb-6">
-              <img
-                src={event.posterUrl}
-                alt={event.title}
-                className="w-full max-h-[60vh] object-cover"
-              />
-            </div>
+            <div
+              className="w-full h-48 sm:h-64 rounded-2xl mb-6 bg-cover bg-center"
+              style={{ backgroundImage: `url(${event.posterUrl})` }}
+              role="img"
+              aria-label={event.title}
+            />
           )}
 
           {/* Title & Organizer */}

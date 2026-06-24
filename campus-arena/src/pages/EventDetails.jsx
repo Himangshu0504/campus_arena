@@ -27,6 +27,7 @@ export default function EventDetails() {
   const [registrationCount, setRegistrationCount] = useState(0);
   const [registrants, setRegistrants] = useState([]);
   const [actionLoading, setActionLoading] = useState(false);
+  const [isPortrait, setIsPortrait] = useState(null);
 
   useEffect(() => {
     async function loadData() {
@@ -149,13 +150,26 @@ export default function EventDetails() {
         </button>
 
         <div className="theme-card rounded-3xl p-8">
-          {/* Event Poster - full poster visible, not cropped */}
+          {/* Event Poster - dynamically adapts to portrait/landscape aspect ratio */}
           {event.posterUrl && (
-            <div className="w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden mb-6 bg-gray-900/40">
+            <div
+              className={`w-full rounded-2xl overflow-hidden mb-6 bg-gray-900/40 flex items-center justify-center ${
+                isPortrait === null
+                  ? "h-64 sm:h-80 md:h-96"
+                  : isPortrait
+                  ? "h-80 sm:h-96 md:h-[28rem]"
+                  : "h-56 sm:h-72 md:h-80"
+              }`}
+            >
               <img
                 src={event.posterUrl}
                 alt={event.title}
                 className="w-full h-full object-contain"
+                onLoad={(e) => {
+                  const img = e.target;
+                  const ratio = img.naturalWidth / img.naturalHeight;
+                  setIsPortrait(ratio < 1);
+                }}
               />
             </div>
           )}

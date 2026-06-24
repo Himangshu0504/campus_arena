@@ -3,6 +3,10 @@
   publish = "dist"
   command = "npm run build"
 
+[build.environment]
+  VITE_CLOUDINARY_CLOUD_NAME = "dowb8qrpt"
+  VITE_CLOUDINARY_UPLOAD_PRESET = "campus_arena"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

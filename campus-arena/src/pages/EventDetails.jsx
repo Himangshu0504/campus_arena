@@ -10,7 +10,7 @@ import {
   getEventRegistrations,
 } from "../services/registrationService";
 import { getUserData } from "../services/getUser";
-import { Calendar, MapPin, Users, Clock, User, CheckCircle, XCircle } from "lucide-react";
+import { Calendar, MapPin, Users, Clock, User, CheckCircle, XCircle, TrendingUp } from "lucide-react";
 import TeamManagement from "../components/TeamManagement";
 import CommentsSection from "../components/CommentsSection";
 import ScoreBoard from "../components/ScoreBoard";
@@ -207,12 +207,20 @@ export default function EventDetails() {
               )}
 
               {(isOrganizer || isAdmin) && (
-                <button
-                  onClick={() => navigate(`/edit-event/${eventId}`)}
-                  className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl font-semibold transition"
-                >
-                  Edit Event
-                </button>
+                <>
+                  <button
+                    onClick={() => navigate(`/edit-event/${eventId}`)}
+                    className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl font-semibold transition"
+                  >
+                    Edit Event
+                  </button>
+                  <button
+                    onClick={() => navigate(`/manage-scores/${eventId}`)}
+                    className="bg-yellow-600 hover:bg-yellow-700 px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2"
+                  >
+                    <TrendingUp size={18} /> Scores
+                  </button>
+                </>
               )}
             </div>
           </div>

@@ -236,6 +236,21 @@ export default function ManageScores() {
     setNewUserName(reg.userName || "Anonymous");
   };
 
+  /** Auto-fill winner & runner-up from the top scores */
+  const handleAutoFillFromScores = () => {
+    const sorted = [...scores].sort((a, b) => (b.score || 0) - (a.score || 0));
+    if (sorted.length === 0) {
+      alert("No scores available to auto-fill. Add participant scores first.");
+      return;
+    }
+    setWinnerName(sorted[0]?.userName || "");
+    setWinnerScore(sorted[0]?.score?.toString() || "");
+    if (sorted.length > 1) {
+      setRunnerUpName(sorted[1]?.userName || "");
+      setRunnerUpScore(sorted[1]?.score?.toString() || "");
+    }
+  };
+
   const sortedScores = [...scores].sort((a, b) => (b.score || 0) - (a.score || 0));
 
   if (loading) {
@@ -330,7 +345,7 @@ export default function ManageScores() {
               </div>
             </div>
 
-            <div className="flex gap-3 mt-4">
+            <div className="flex gap-3 mt-4 flex-wrap">
               <button
                 onClick={handleSaveResult}
                 disabled={saving}
@@ -339,6 +354,15 @@ export default function ManageScores() {
                 <Save size={18} />
                 {saving ? "Saving..." : "Save Result"}
               </button>
+              {sortedScores.length > 0 && (
+                <button
+                  onClick={handleAutoFillFromScores}
+                  disabled={saving}
+                  className="bg-purple-600 hover:bg-purple-700 disabled:bg-purple-600/50 disabled:cursor-not-allowed px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2"
+                >
+                  <Medal size={18} /> Auto-fill from Scores
+                </button>
+              )}
               {event?.hasResult && (
                 <button
                   onClick={handleClearResult}

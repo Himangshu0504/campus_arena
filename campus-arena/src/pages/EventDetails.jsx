@@ -149,13 +149,13 @@ export default function EventDetails() {
         </button>
 
         <div className="theme-card rounded-3xl p-8">
-          {/* Event Banner - responsive with constrained height */}
+          {/* Event Banner - consistent aspect ratio, no awkward cropping */}
           {event.posterUrl && (
-            <div className="w-full overflow-hidden rounded-2xl mb-6">
+            <div className="w-full overflow-hidden rounded-2xl mb-6 bg-gray-900/40">
               <img
                 src={event.posterUrl}
                 alt={event.title}
-                className="w-full object-cover max-h-72 sm:max-h-80 md:max-h-96"
+                className="w-full aspect-[16/9] object-contain"
               />
             </div>
           )}

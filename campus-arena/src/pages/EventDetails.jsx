@@ -149,13 +149,13 @@ export default function EventDetails() {
         </button>
 
         <div className="theme-card rounded-3xl p-8">
-          {/* Event Poster */}
+          {/* Event Poster - full poster visible, not cropped */}
           {event.posterUrl && (
-            <div className="w-full h-48 sm:h-64 rounded-2xl overflow-hidden mb-6">
+            <div className="w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden mb-6 bg-gray-900/40">
               <img
                 src={event.posterUrl}
                 alt={event.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             </div>
           )}

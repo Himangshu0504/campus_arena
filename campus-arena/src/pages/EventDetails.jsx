@@ -27,7 +27,6 @@ export default function EventDetails() {
   const [registrationCount, setRegistrationCount] = useState(0);
   const [registrants, setRegistrants] = useState([]);
   const [actionLoading, setActionLoading] = useState(false);
-  const [isPortrait, setIsPortrait] = useState(null);
 
   useEffect(() => {
     async function loadData() {
@@ -150,20 +149,13 @@ export default function EventDetails() {
         </button>
 
         <div className="theme-card rounded-3xl p-8">
-          {/* Event Poster - natural sizing, no fixed heights */}
+          {/* Event Banner - fixed height, responsive, covers container */}
           {event.posterUrl && (
-            <div className="w-full rounded-2xl overflow-hidden mb-6 bg-gray-900/40 flex items-center justify-center">
+            <div className="w-full overflow-hidden rounded-2xl mb-6 bg-gray-900/40">
               <img
                 src={event.posterUrl}
                 alt={event.title}
-                className={`w-full h-auto object-contain transition-all duration-300 ${
-                  isPortrait === null ? "" : isPortrait ? "max-w-lg mx-auto" : ""
-                }`}
-                onLoad={(e) => {
-                  const img = e.target;
-                  const ratio = img.naturalWidth / img.naturalHeight;
-                  setIsPortrait(ratio < 1);
-                }}
+                className="w-full h-64 md:h-80 object-cover"
               />
             </div>
           )}

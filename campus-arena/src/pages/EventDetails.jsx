@@ -149,13 +149,13 @@ export default function EventDetails() {
         </button>
 
         <div className="theme-card rounded-3xl p-8">
-          {/* Event Banner - standard 16:9 aspect ratio, clean cover */}
+          {/* Event Poster - framed display, full image visible */}
           {event.posterUrl && (
-            <div className="w-full rounded-2xl mb-6 overflow-hidden bg-gray-900/40">
+            <div className="w-full rounded-2xl mb-6 overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center py-4">
               <img
                 src={event.posterUrl}
                 alt={event.title}
-                className="w-full aspect-video object-cover"
+                className="w-full max-w-2xl max-h-[65vh] object-contain rounded-lg shadow-2xl"
               />
             </div>
           )}

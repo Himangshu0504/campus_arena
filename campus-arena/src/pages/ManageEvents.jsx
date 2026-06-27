@@ -123,11 +123,11 @@ export default function ManageEvents() {
                 className="bg-white/10 border border-white/20 rounded-2xl p-6 shadow-xl hover:scale-[1.02] transition"
               >
                 {event.posterUrl && (
-                  <div className="-mx-6 -mt-6 mb-4 overflow-hidden">
+                  <div className="w-full aspect-video -mx-6 -mt-6 mb-4 overflow-hidden bg-gray-800/30">
                     <img
                       src={event.posterUrl}
                       alt={event.title}
-                      className="w-full object-contain max-h-48 bg-gray-800/30"
+                      className="w-full h-full object-cover"
                       onError={(e) => { e.target.style.display = "none"; }}
                     />
                   </div>

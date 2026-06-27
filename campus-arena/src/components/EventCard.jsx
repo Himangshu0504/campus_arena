@@ -8,18 +8,18 @@ export default function EventCard({ event }) {
 
   return (
     <div className="bg-white/10 border border-white/10 rounded-2xl shadow-lg hover:scale-[1.02] transition overflow-hidden flex flex-col min-h-[420px]">
-      {/* Poster Image - landscape-friendly aspect ratio */}
+      {/* Poster Image - full width with rounded top corners, capped height */}
       {event.posterUrl ? (
-        <div className="w-full aspect-video flex-shrink-0 overflow-hidden bg-gray-800/30">
+        <div className="w-full max-h-48 flex-shrink-0 overflow-hidden bg-gray-800/30 flex items-center justify-center">
           <img
             src={event.posterUrl}
             alt={event.title}
-            className="w-full h-full object-contain"
+            className="w-full object-contain max-h-48"
             onError={(e) => { e.target.style.display = "none"; }}
           />
         </div>
       ) : (
-        <div className="w-full aspect-video flex-shrink-0 bg-gradient-to-br from-green-900/20 to-emerald-900/20" />
+        <div className="w-full h-32 flex-shrink-0 bg-gradient-to-br from-green-900/20 to-emerald-900/20" />
       )}
 
       {/* Content - grows to fill available space */}
